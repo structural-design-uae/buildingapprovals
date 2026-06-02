@@ -61,6 +61,7 @@ const HeroSection: React.FC = () => {
             width={600}
             height={600}
             priority
+            sizes="(max-width: 768px) 92vw, 600px"
             className="hero-image"
           />
         </div>

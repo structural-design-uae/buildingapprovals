@@ -74,6 +74,8 @@ const AuthoritiesSection: React.FC = () => {
                   src={authority.logo}
                   alt={authority.alt}
                   className="authority-logo"
+                  loading="lazy"
+                  decoding="async"
                 />
               </div>
             ))}
@@ -87,6 +89,8 @@ const AuthoritiesSection: React.FC = () => {
                   src={authority.logo}
                   alt={authority.alt}
                   className="authority-logo"
+                  loading="lazy"
+                  decoding="async"
                 />
               </div>
             ))}

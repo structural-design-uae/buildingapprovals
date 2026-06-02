@@ -57,6 +57,7 @@ const StandoutSection: React.FC = () => {
                 alt="Professional building approvals consultancy office in Dubai by Building Approvals Dubai"
                 width={500}
                 height={700}
+                sizes="(max-width: 900px) 92vw, 500px"
                 className="standout-image"
               />
               <div className="image-overlay"></div>
