@@ -6,10 +6,9 @@ export function middleware(request: NextRequest) {
 
   // Redirect only the real apex domain to www. Do not rewrite Hostinger
   // preview domains or internal health-check hosts.
-  if (host === 'buildingapprovals.ae') {
-    const url = request.nextUrl.clone();
-    url.host = 'www.buildingapprovals.ae';
-    return NextResponse.redirect(url, 301); // 301 = Permanent redirect
+  if (host === 'buildingapprovals.ae' || host === 'buildingapprovals.ae:3000') {
+    const redirectUrl = new URL(request.nextUrl.pathname + request.nextUrl.search, 'https://www.buildingapprovals.ae');
+    return NextResponse.redirect(redirectUrl, 301); // 301 = Permanent redirect
   }
 
   return NextResponse.next();
