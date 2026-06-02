@@ -1,0 +1,359 @@
+"use client";
+
+import React, { useEffect, useRef, useState } from 'react';
+import ContactFormModal from '../ContactFormModal';
+import './contact.css';
+
+const Contact: React.FC = () => {
+  const serviceOptions = [
+    'General Enquiry',
+    'Civil Defense Approval',
+    'DEWA Approval',
+    'Dubai Municipality Approval',
+    'Emaar Approval',
+    'Nakheel Approval',
+    'JAFZA Approval',
+    'DHA Approval',
+    'DSO Approval',
+    'Dubai Development Authority',
+    'Food Control Department',
+    'Spa Approval',
+    'Shisha Cafe License',
+    'Smoking Permit',
+    'Swimming Pool Approval',
+    'Solar Approval',
+    'Signage Approval',
+    'Tent Approval',
+    'RTA Permit and Approval',
+    'Tecom and DCCA Approval',
+    'Third Party Consultants',
+    'Trakhees Approval',
+    'Other',
+  ];
+
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    countryCode: '+971',
+    phone: '',
+    service: 'General Enquiry',
+    message: '',
+  });
+  const [isServiceOpen, setIsServiceOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const formRef = useRef<HTMLFormElement | null>(null);
+  const serviceWrapperRef = useRef<HTMLDivElement | null>(null);
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    const whatsappNumber = '971589575610';
+    const text = `*New Enquiry*%0A%0A*Name:* ${formData.name}%0A*Email:* ${formData.email}%0A*Phone:* ${formData.countryCode} ${formData.phone}%0A*Service:* ${formData.service}%0A*Message:* ${formData.message}`;
+    window.open(`https://wa.me/${whatsappNumber}?text=${text}`, '_blank');
+  };
+
+  const ensureServiceDropdownInView = () => {
+    const wrapper = serviceWrapperRef.current;
+    if (!wrapper) return;
+    const rect = wrapper.getBoundingClientRect();
+    const dropdownHeight = 220;
+    const margin = 16;
+    const neededBottom = rect.bottom + dropdownHeight + margin;
+    if (neededBottom > window.innerHeight) {
+      const scrollAmount = neededBottom - window.innerHeight;
+      window.scrollBy({ top: scrollAmount, behavior: 'smooth' });
+    }
+  };
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (serviceWrapperRef.current && !serviceWrapperRef.current.contains(event.target as Node)) {
+        setIsServiceOpen(false);
+      }
+    };
+    const handleEsc = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') setIsServiceOpen(false);
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    document.addEventListener('keydown', handleEsc);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener('keydown', handleEsc);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (isServiceOpen) {
+      requestAnimationFrame(ensureServiceDropdownInView);
+    }
+  }, [isServiceOpen]);
+
+  const toggleServiceDropdown = () => setIsServiceOpen((prev) => !prev);
+
+  const handleServiceSelect = (value: string) => {
+    setFormData((prev) => ({ ...prev, service: value }));
+    setIsServiceOpen(false);
+  };
+
+  return (
+    <>
+    <section className="contact-shell" id="contact">
+      <div className="contact-hero">
+        <div className="contact-badge">We respond fast</div>
+        <h1>Let&apos;s talk approvals</h1>
+        <p>Share your project details and we&apos;ll get back with a clear approval plan.</p>
+      </div>
+
+      <div className="contact-grid">
+        <div className="contact-card contact-card-primary">
+          <h2>Contact details</h2>
+          <div className="contact-list">
+            <div className="contact-list-item">
+              <div className="contact-icon" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M12 2C8.13 2 5 5.13 5 9C5 14.25 12 22 12 22C12 22 19 14.25 19 9C19 5.13 15.87 2 12 2ZM12 11.5C10.62 11.5 9.5 10.38 9.5 9C9.5 7.62 10.62 6.5 12 6.5C13.38 6.5 14.5 7.62 14.5 9C14.5 10.38 13.38 11.5 12 11.5Z" fill="white"/>
+                </svg>
+              </div>
+              <div>
+                <p className="contact-list-label">Address</p>
+                <a
+                  href="https://maps.app.goo.gl/WuitF9PhjnDoV71E6"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="contact-text"
+                >
+                  Al Babtain Building - Office No: 302 2nd St - Deira - Dubai
+                </a>
+                <p className="contact-small">Opening hours: Mon – Fri · 9AM – 6PM</p>
+              </div>
+            </div>
+            <div className="contact-list-item">
+              <div className="contact-icon" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M20.01 15.38C18.78 15.38 17.59 15.18 16.48 14.82C16.13 14.7 15.74 14.79 15.47 15.06L13.9 17.03C11.07 15.68 8.42 13.13 7.01 10.2L8.96 8.54C9.23 8.26 9.31 7.87 9.2 7.52C8.83 6.41 8.64 5.22 8.64 3.99C8.64 3.45 8.19 3 7.65 3H4.19C3.65 3 3 3.24 3 3.99C3 13.28 10.73 21 20.01 21C20.72 21 21 20.37 21 19.82V16.37C21 15.83 20.55 15.38 20.01 15.38Z" fill="white"/>
+                </svg>
+              </div>
+              <div>
+                <p className="contact-list-label">Phone / WhatsApp</p>
+                <a href="tel:+971589575610">058 957 5610</a>
+                <p className="contact-small">Get a free consultation and cost calculation now.</p>
+              </div>
+            </div>
+            <div className="contact-list-item">
+              <div className="contact-icon" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M20 4H4C2.9 4 2.01 4.9 2.01 6L2 18C2 19.1 2.9 20 4 20H20C21.1 20 22 19.1 22 18V6C22 4.9 21.1 4 20 4ZM20 8L12 13L4 8V6L12 11L20 6V8Z" fill="white"/>
+                </svg>
+              </div>
+              <div>
+                <p className="contact-list-label">Email</p>
+                <a href="mailto:info@buildingapprovals.ae">info@buildingapprovals.ae</a>
+              </div>
+            </div>
+          </div>
+          <div className="contact-note">Need it urgent? WhatsApp us directly for priority handling.</div>
+          <a
+            className="contact-map-link"
+            href="https://maps.app.goo.gl/WuitF9PhjnDoV71E6"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Go to map
+          </a>
+        </div>
+
+        <div className="contact-card contact-form-card">
+          <h2>Send an enquiry</h2>
+          <form className="contact-form" onSubmit={handleSubmit} ref={formRef}>
+            <div className="form-row">
+              <label>
+                Full Name*
+                <input
+                  type="text"
+                  name="name"
+                  value={formData.name}
+                  onChange={handleChange}
+                  placeholder="Enter your full name"
+                  required
+                />
+              </label>
+              <label>
+                Email*
+                <input
+                  type="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  placeholder="you@example.com"
+                  required
+                />
+              </label>
+            </div>
+
+            <div className="form-row form-row-phone">
+              <label>
+                Phone / WhatsApp*
+                <div className="contact-phone-wrap">
+                  <select
+                    name="countryCode"
+                    value={formData.countryCode}
+                    onChange={handleChange}
+                    className="contact-phone-code"
+                  >
+                    <option value="+971">+971 (UAE)</option>
+                    <option value="+966">+966 (KSA)</option>
+                    <option value="+974">+974 (Qatar)</option>
+                    <option value="+965">+965 (Kuwait)</option>
+                    <option value="+968">+968 (Oman)</option>
+                    <option value="+20">+20 (Egypt)</option>
+                    <option value="+44">+44 (UK)</option>
+                    <option value="+1">+1 (US)</option>
+                    <option value="+91">+91 (India)</option>
+                  </select>
+                  <input
+                    type="tel"
+                    name="phone"
+                    value={formData.phone}
+                    onChange={handleChange}
+                    placeholder="50 123 4567"
+                    required
+                    className="contact-phone-input"
+                  />
+                </div>
+              </label>
+            </div>
+
+            <label className="form-full">
+              Service*
+              <div className="service-select-wrapper" ref={serviceWrapperRef}>
+                <button
+                  type="button"
+                  className={`form-input service-trigger ${isServiceOpen ? 'is-open' : ''}`}
+                  onClick={toggleServiceDropdown}
+                  aria-haspopup="listbox"
+                  aria-expanded={isServiceOpen}
+                >
+                  <span>{formData.service || 'Select a service'}</span>
+                  <svg className="service-trigger-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M6 9L12 15L18 9" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
+                </button>
+                {isServiceOpen && (
+                  <div className="service-options" role="listbox">
+                    {serviceOptions.map((option) => (
+                      <button
+                        type="button"
+                        key={option}
+                        className={`service-option ${formData.service === option ? 'active' : ''}`}
+                        onClick={() => handleServiceSelect(option)}
+                        role="option"
+                        aria-selected={formData.service === option}
+                      >
+                        {option}
+                      </button>
+                    ))}
+                  </div>
+                )}
+              </div>
+            </label>
+
+            <label className="form-full">
+              Project / Message
+              <textarea
+                name="message"
+                value={formData.message}
+                onChange={handleChange}
+                placeholder="Share timeline, location, authority, and any drawings available"
+                rows={3}
+              />
+            </label>
+
+            <button type="submit" className="contact-submit">
+              Send via WhatsApp
+            </button>
+          </form>
+        </div>
+      </div>
+
+      <div className="contact-hours-card">
+        <div className="contact-hours-header">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM12 20C7.59 20 4 16.41 4 12C4 7.59 7.59 4 12 4C16.41 4 20 7.59 20 12C20 16.41 16.41 20 12 20ZM12.5 7H11V13L16.25 16.15L17 14.92L12.5 12.25V7Z" fill="currentColor"/>
+          </svg>
+          <h3>Working Hours</h3>
+        </div>
+        <div className="contact-hours-grid">
+          {[
+            { day: 'Monday', hours: '9AM – 6PM', open: true },
+            { day: 'Tuesday', hours: '9AM – 6PM', open: true },
+            { day: 'Wednesday', hours: '9AM – 6PM', open: true },
+            { day: 'Thursday', hours: '9AM – 6PM', open: true },
+            { day: 'Friday', hours: '9AM – 6PM', open: true },
+            { day: 'Saturday', hours: 'Closed', open: false },
+            { day: 'Sunday', hours: 'Closed', open: false },
+          ].map(({ day, hours, open }) => (
+            <div key={day} className="contact-hours-row">
+              <span className="contact-hours-day">{day}</span>
+              <span className={`contact-hours-time ${open ? '' : 'contact-hours-closed'}`}>{hours}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div className="contact-map-embed">
+        <iframe
+          title="Office location"
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1804.25!2d55.3099428!3d25.2503628!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xa92d40ccf05344f1%3A0x1f4091fdd509edf7!2sBuilding%20Approvals%20Dubai!5e0!3m2!1sen!2sae!4v1707500000000"
+          loading="lazy"
+          allowFullScreen
+          referrerPolicy="no-referrer-when-downgrade"
+        ></iframe>
+      </div>
+
+      <div className="contact-bottom-copy" aria-label="Contact Building Approvals Dubai">
+        <div className="contact-bottom-copy-icon" aria-hidden="true">
+          <svg width="34" height="34" viewBox="0 0 24 24" fill="none">
+            <path d="M7 8.5H17" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round"/>
+            <path d="M7 12H14" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round"/>
+            <path d="M7 15.5H11" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round"/>
+            <path d="M5 3.75H19C20.1 3.75 21 4.65 21 5.75V16.75C21 17.85 20.1 18.75 19 18.75H12.8L8.8 21.25V18.75H5C3.9 18.75 3 17.85 3 16.75V5.75C3 4.65 3.9 3.75 5 3.75Z" stroke="currentColor" strokeWidth="1.8" strokeLinejoin="round"/>
+          </svg>
+        </div>
+        <div className="contact-bottom-copy-content">
+          <span className="contact-bottom-copy-kicker">Ready to start?</span>
+          <h2>Speak with an approvals specialist</h2>
+          <p>
+            Contact us for reliable support with buidling approvals in Dubai. Our team helps property owners, contractors, and businesses manage documents, drawings, submissions, and follow-ups for smooth authority approvals. Whether you need dubai approvals for fit-out, renovation, villa modification, or commercial projects, we guide you through each step with clear communication and practical assistance. For hassle-free approvals dubai, reach out today and let us help move your project forward.
+          </p>
+          <div className="contact-bottom-copy-actions">
+            <button type="button" onClick={() => setIsModalOpen(true)}>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M4 6.75C4 5.78 4.78 5 5.75 5H18.25C19.22 5 20 5.78 20 6.75V17.25C20 18.22 19.22 19 18.25 19H5.75C4.78 19 4 18.22 4 17.25V6.75Z" stroke="currentColor" strokeWidth="1.8"/>
+                <path d="M5 7L12 12.25L19 7" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+              Get in touch
+            </button>
+            <a href="tel:+971589575610">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M6.6 10.8C8.05 13.65 10.35 15.95 13.2 17.4L15.4 15.2C15.68 14.92 16.08 14.83 16.44 14.95C17.58 15.33 18.78 15.53 20 15.53C20.55 15.53 21 15.98 21 16.53V20C21 20.55 20.55 21 20 21C10.61 21 3 13.39 3 4C3 3.45 3.45 3 4 3H7.48C8.03 3 8.48 3.45 8.48 4C8.48 5.22 8.68 6.42 9.05 7.56C9.16 7.92 9.08 8.31 8.79 8.6L6.6 10.8Z" stroke="currentColor" strokeWidth="1.8" strokeLinejoin="round"/>
+              </svg>
+              058 957 5610
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+    <ContactFormModal
+      isOpen={isModalOpen}
+      onClose={() => setIsModalOpen(false)}
+      selectedService=""
+    />
+    </>
+  );
+};
+
+export default Contact;
