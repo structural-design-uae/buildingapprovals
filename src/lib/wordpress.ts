@@ -1,4 +1,5 @@
-const WP_GRAPHQL_URL = process.env.WORDPRESS_GRAPHQL_URL ?? '';
+const WP_GRAPHQL_URL = process.env.WORDPRESS_GRAPHQL_URL || 'https://cms.buildingapprovals.ae/graphql';
+const CMS_REVALIDATE_SECONDS = 60;
 
 export interface WPPost {
   id: string;
@@ -71,7 +72,7 @@ async function wpFetch<T>(query: string, variables?: Record<string, unknown>): P
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ query, variables }),
-    next: { tags: ['wordpress'] },
+    next: { tags: ['wordpress'], revalidate: CMS_REVALIDATE_SECONDS },
   });
 
   if (!res.ok) {
@@ -132,6 +133,10 @@ export function stripHtmlTags(html: string): string {
     .replace(/<[^>]*>/g, '')
     .replace(/&amp;/g, '&')
     .replace(/&nbsp;/g, ' ')
+    .replace(/&rsquo;/g, "'")
+    .replace(/&lsquo;/g, "'")
+    .replace(/&rdquo;/g, '"')
+    .replace(/&ldquo;/g, '"')
     .replace(/&#8217;/g, "'")
     .replace(/&#8220;/g, '"')
     .replace(/&#8221;/g, '"')

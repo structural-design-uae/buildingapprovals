@@ -9,6 +9,8 @@ const SITE_NAME = 'Building Approvals Dubai';
 const SITE_URL  = 'https://www.buildingapprovals.ae';
 // ──────────────────────────────────────────────────────────────────────────────
 
+export const revalidate = 60;
+
 export const metadata: Metadata = {
   title: `Blog | ${SITE_NAME}`,
   description: 'Expert guides and insights on Dubai building approvals, authority permits, and construction regulations from the Building Approvals Dubai team.',

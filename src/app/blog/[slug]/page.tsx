@@ -1,7 +1,6 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
-import { blogPosts } from '../blogData';
 import { getAllPosts, getPostBySlug } from '@/lib/getAllPosts';
 import BlogContent from './BlogContent';
 import BlogTOC from './BlogTOC';
@@ -16,6 +15,9 @@ const SITE_NAME      = 'Building Approvals Dubai';
 const LOGO_URL       = `${BASE_URL}/images/BA OG Logo_imresizer (1).png?v=2`;
 const TWITTER_HANDLE = '@buildingapprovalsdubai';
 // ──────────────────────────────────────────────────────────────────────────────
+
+export const revalidate = 60;
+export const dynamicParams = true;
 
 function normalizeMetaTitle(title: string): string {
   return cleanBlogMetaTitle(title);
@@ -103,6 +105,9 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 
   const isWordPressPost = post.source === 'wordpress';
   const wpContent = (post as { wpContent?: string }).wpContent;
+  const relatedPosts = (await getAllPosts())
+    .filter(relatedPost => relatedPost.slug !== post.slug)
+    .slice(0, 3);
 
   const imageUrl = resolveImageUrl(post.ogImage || post.coverImage || post.image);
   const postUrl = `${BASE_URL}/blog/${post.slug}`;
@@ -239,10 +244,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
             <h2 className="related-articles-title">You Might Also Like</h2>
             <p className="related-articles-subtitle">Check out these helpful guides on building approvals in Dubai</p>
             <div className="related-articles-grid">
-              {blogPosts
-                .filter(p => p.slug !== post!.slug)
-                .slice(0, 3)
-                .map(relatedPost => (
+              {relatedPosts.map(relatedPost => (
                   <Link key={relatedPost.id} href={`/blog/${relatedPost.slug}`} className="related-article-card">
                     <div
                       className="related-article-image"

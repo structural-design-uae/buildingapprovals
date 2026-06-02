@@ -1,31 +1,32 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { revalidatePath, revalidateTag } from 'next/cache';
 
 /**
- * WordPress calls this endpoint via the WP Webhooks plugin when a post is
- * published/updated. It revalidates the 'wordpress' cache tag so the next
- * request re-fetches fresh data, then triggers the Vercel Deploy Hook for a
- * full static rebuild.
+ * WordPress can call this endpoint when a post is published/updated. It
+ * revalidates the 'wordpress' cache tag and the public blog routes so the
+ * next request re-fetches fresh CMS data.
  *
  * Required env vars:
- *   REVALIDATION_SECRET   — shared secret set in both WordPress and Vercel
- *   VERCEL_DEPLOY_HOOK_URL — the deploy hook URL from your Vercel project
+ *   REVALIDATION_SECRET — shared secret set in both WordPress and Hostinger
  */
 export async function POST(request: NextRequest) {
   const secret = request.nextUrl.searchParams.get('secret');
+  const slug = request.nextUrl.searchParams.get('slug');
 
   if (secret !== process.env.REVALIDATION_SECRET) {
     return NextResponse.json({ error: 'Invalid secret' }, { status: 401 });
   }
 
-  // Trigger a full Vercel rebuild via Deploy Hook
-  const deployHookUrl = process.env.VERCEL_DEPLOY_HOOK_URL;
-  if (deployHookUrl) {
-    try {
-      await fetch(deployHookUrl, { method: 'POST' });
-    } catch (err) {
-      console.error('[revalidate] Deploy hook failed:', err);
-    }
+  revalidateTag('wordpress', 'max');
+  revalidatePath('/blog');
+
+  if (slug) {
+    revalidatePath(`/blog/${slug}`);
   }
 
-  return NextResponse.json({ revalidated: true, timestamp: Date.now() });
+  return NextResponse.json({
+    revalidated: true,
+    paths: slug ? ['/blog', `/blog/${slug}`] : ['/blog'],
+    timestamp: Date.now(),
+  });
 }

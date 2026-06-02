@@ -3,7 +3,7 @@ import { getWordPressPosts, getWordPressPost, stripHtmlTags, WPPost } from './wo
 
 /** Converts a WPPost to the shared BlogPost shape. */
 function wpPostToBlogPost(wp: WPPost): BlogPost {
-  const image = wp.featuredImage?.node.sourceUrl ?? '/images/blog/default-cover.jpg';
+  const image = wp.featuredImage?.node.sourceUrl ?? '/images/BA OG Logo_imresizer (1).png';
   const category = wp.categories.nodes[0]?.name ?? 'General';
   const keywords = wp.tags.nodes.map(t => t.name);
   const rawExcerpt = stripHtmlTags(wp.excerpt ?? '');
