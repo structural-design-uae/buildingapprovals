@@ -4,10 +4,11 @@ import type { NextRequest } from 'next/server';
 export function middleware(request: NextRequest) {
   const host = request.headers.get('host');
 
-  // Redirect non-www to www
-  if (host && !host.startsWith('www.') && !host.startsWith('localhost')) {
+  // Redirect only the real apex domain to www. Do not rewrite Hostinger
+  // preview domains or internal health-check hosts.
+  if (host === 'buildingapprovals.ae') {
     const url = request.nextUrl.clone();
-    url.host = `www.${host}`;
+    url.host = 'www.buildingapprovals.ae';
     return NextResponse.redirect(url, 301); // 301 = Permanent redirect
   }
 
