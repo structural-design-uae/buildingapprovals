@@ -4,6 +4,7 @@ const WP_GRAPHQL_URL = process.env.WORDPRESS_GRAPHQL_URL || 'https://cms.buildin
 const CMS_REVALIDATE_SECONDS = 60;
 const CMS_HOST = 'cms.buildingapprovals.ae';
 const HOSTINGER_INTERNAL_IP = '145.79.210.138';
+const WP_REST_BASE_URL = new URL('/wp-json/wp/v2', WP_GRAPHQL_URL).toString().replace(/\/$/, '');
 
 const shouldUseHostingerInternalGraphql =
   WP_GRAPHQL_URL.includes(CMS_HOST) &&
@@ -25,6 +26,26 @@ export interface WPPost {
     title?: string;
     metaDesc?: string;
     opengraphImage?: { sourceUrl: string } | null;
+  };
+}
+
+interface WPRestPost {
+  id: number;
+  slug: string;
+  date: string;
+  modified: string;
+  title: { rendered: string };
+  excerpt: { rendered: string };
+  content?: { rendered: string };
+  _embedded?: {
+    'wp:featuredmedia'?: Array<{
+      source_url?: string;
+      alt_text?: string;
+    }>;
+    'wp:term'?: Array<Array<{
+      taxonomy: string;
+      name: string;
+    }>>;
   };
 }
 
@@ -162,6 +183,9 @@ export async function getWordPressPosts(): Promise<WPPost[]> {
     };
   };
 
+  const restPosts = await getWordPressPostsFromRest();
+  if (restPosts.length > 0) return restPosts;
+
   try {
     do {
       const data: PostsPage = await wpFetch<PostsPage>(POSTS_QUERY, { after });
@@ -180,6 +204,9 @@ export async function getWordPressPosts(): Promise<WPPost[]> {
 export async function getWordPressPost(slug: string): Promise<WPPost | null> {
   if (!WP_GRAPHQL_URL) return null;
 
+  const restPost = await getWordPressPostFromRest(slug);
+  if (restPost) return restPost;
+
   try {
     const data = await wpFetch<{ post: WPPost | null }>(POST_QUERY, { slug });
     return data.post ?? null;
@@ -187,6 +214,110 @@ export async function getWordPressPost(slug: string): Promise<WPPost | null> {
     console.error(`[WordPress] Failed to fetch post "${slug}":`, err);
     return null;
   }
+}
+
+async function getWordPressPostsFromRest(): Promise<WPPost[]> {
+  try {
+    const restPosts = await wpRestFetch<WPRestPost[]>('/posts?status=publish&per_page=100&_embed=wp:featuredmedia,wp:term');
+    return restPosts.map(restPostToWpPost);
+  } catch (err) {
+    console.error('[WordPress] Failed to fetch REST posts:', err);
+    return [];
+  }
+}
+
+async function getWordPressPostFromRest(slug: string): Promise<WPPost | null> {
+  try {
+    const restPosts = await wpRestFetch<WPRestPost[]>(
+      `/posts?slug=${encodeURIComponent(slug)}&status=publish&_embed=wp:featuredmedia,wp:term`
+    );
+
+    return restPosts[0] ? restPostToWpPost(restPosts[0]) : null;
+  } catch (err) {
+    console.error(`[WordPress] Failed to fetch REST post "${slug}":`, err);
+    return null;
+  }
+}
+
+async function wpRestFetch<T>(path: string): Promise<T> {
+  if (shouldUseHostingerInternalGraphql) {
+    return wpInternalRestFetch<T>(path);
+  }
+
+  const res = await fetch(`${WP_REST_BASE_URL}${path}`, {
+    next: { tags: ['wordpress'], revalidate: CMS_REVALIDATE_SECONDS },
+  });
+
+  if (!res.ok) {
+    throw new Error(`WordPress REST request failed: ${res.status}`);
+  }
+
+  return res.json() as Promise<T>;
+}
+
+async function wpInternalRestFetch<T>(path: string): Promise<T> {
+  const responseBody = await new Promise<string>((resolve, reject) => {
+    const req = http.request({
+      hostname: HOSTINGER_INTERNAL_IP,
+      port: 80,
+      path: `/wp-json/wp/v2${path}`,
+      method: 'GET',
+      headers: {
+        Host: CMS_HOST,
+        'X-Forwarded-Proto': 'https',
+        HTTPS: 'on',
+      },
+    }, (res) => {
+      let body = '';
+
+      res.setEncoding('utf8');
+      res.on('data', chunk => {
+        body += chunk;
+      });
+      res.on('end', () => {
+        if (!res.statusCode || res.statusCode < 200 || res.statusCode >= 300) {
+          reject(new Error(`WordPress internal REST request failed: ${res.statusCode} ${body.slice(0, 300)}`));
+          return;
+        }
+
+        resolve(body);
+      });
+    });
+
+    req.on('error', reject);
+    req.end();
+  });
+
+  return JSON.parse(responseBody) as T;
+}
+
+function restPostToWpPost(post: WPRestPost): WPPost {
+  const terms = (post._embedded?.['wp:term'] ?? []).flat();
+  const featuredImage = post._embedded?.['wp:featuredmedia']?.[0];
+
+  return {
+    id: String(post.id),
+    databaseId: post.id,
+    title: stripHtmlTags(post.title.rendered),
+    slug: post.slug,
+    excerpt: post.excerpt.rendered,
+    content: post.content?.rendered ?? '',
+    date: post.date,
+    modified: post.modified,
+    featuredImage: featuredImage?.source_url
+      ? { node: { sourceUrl: featuredImage.source_url, altText: featuredImage.alt_text ?? '' } }
+      : null,
+    categories: {
+      nodes: terms
+        .filter(term => term.taxonomy === 'category')
+        .map(term => ({ name: term.name })),
+    },
+    tags: {
+      nodes: terms
+        .filter(term => term.taxonomy === 'post_tag')
+        .map(term => ({ name: term.name })),
+    },
+  };
 }
 
 export function stripHtmlTags(html: string): string {
