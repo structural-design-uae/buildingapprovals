@@ -127,7 +127,7 @@ export default function BlogContent() {
       </ul>
 
       <blockquote>
-        <p><strong><span className="text-size-xl">Keep Learning: </span></strong><a target="_blank" rel="noopener noreferrer nofollow" href="https://www.buildingapprovals.ae/blog/dubai-municipality-approvals-dm-2026-updated-rules"><span className="text-size-xl">Dubai Municipality Approvals (DM): Updated Rules 2026</span></a></p>
+        <p><strong><span>Keep Learning: </span></strong><a target="_blank" rel="noopener noreferrer nofollow" href="https://www.buildingapprovals.ae/blog/dubai-municipality-approvals-dm-2026-updated-rules"><span>Dubai Municipality Approvals (DM): Updated Rules 2026</span></a></p>
       </blockquote>
 
       <h2>Why Hire a Consultant for DSO Approval in Dubai?</h2>
@@ -202,7 +202,7 @@ export default function BlogContent() {
       </ul>
 
       <blockquote>
-        <p><strong><span className="text-size-xl">Keep Learning: </span></strong><a target="_blank" rel="noopener noreferrer nofollow" href="https://www.buildingapprovals.ae/blog/dm-municipality-salon-approval-dubai"><span className="text-size-xl">DM Municipality Salon Approval in Dubai: Complete 2026 Guide</span></a></p>
+        <p><strong><span>Keep Learning: </span></strong><a target="_blank" rel="noopener noreferrer nofollow" href="https://www.buildingapprovals.ae/blog/dm-municipality-salon-approval-dubai"><span>DM Municipality Salon Approval in Dubai: Complete 2026 Guide</span></a></p>
       </blockquote>
 
       <h2>FAQs: DSO Approval in Dubai</h2>
