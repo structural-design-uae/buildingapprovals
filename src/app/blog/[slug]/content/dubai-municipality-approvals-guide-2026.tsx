@@ -379,7 +379,7 @@ export default function BlogContent() {
 
       <p><strong>Address:</strong> Al Khawaneej Road, Wadi Al-Amardi, near the UAE Football Association</p>
 
-      <p><strong>Working Hours: </strong></p>
+      <p><strong>Working Hours:</strong></p>
 
       <p><strong>For farm animals</strong>: Sunday to Thursday: from 7:30 a.m. to 7:30 p.m, Friday: 8:00 a.m. to 11:30 a.m, Saturday: Closed</p>
 
@@ -395,7 +395,7 @@ export default function BlogContent() {
 
       <h3>4. Abattoirs</h3>
 
-      <p><a target="_blank" rel="noopener noreferrer nofollow" href="https://maps.app.goo.gl/YCKXUjHM1MArY8dc7"><strong>Al Qusais Abattoir </strong></a></p>
+      <p><a target="_blank" rel="noopener noreferrer nofollow" href="https://maps.app.goo.gl/YCKXUjHM1MArY8dc7"><strong>Al Qusais Abattoir</strong></a></p>
 
       <p><a target="_blank" rel="noopener noreferrer nofollow" href="https://maps.app.goo.gl/y5GdRrYikcmpnmKZ7"><strong>Al Qouz Abattoir</strong></a></p>
 

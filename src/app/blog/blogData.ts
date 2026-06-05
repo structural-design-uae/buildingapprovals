@@ -1,7 +1,3 @@
-import { FaqItem } from '@/lib/homepage-faqs';
-
-export type { FaqItem };
-
 export interface BlogPost {
   id: string;
   title: string;
@@ -66,28 +62,18 @@ export const blogPosts: BlogPost[] = [
   {
     id: '1778068785631',
     title: "Dubai Municipality Services: Complete Guide for Residents",
-    slug: 'dubai-municipality-services-complete-guide-for-residents',
+    slug: 'dubai-municipality-approvals-guide-2026',
     category: "General",
     author: "Building Approvals Dubai",
     date: '2026-05-06',
-    dateModified: '2026-05-08',
+    dateModified: '2026-06-05',
     excerpt: "Learn about Dubai Municipality services, DM approval process, rules, fees, BPS Dubai, branches, and fitout approval steps for property projects.",
     image: "https://tey8h8kr4bvj5bie.public.blob.vercel-storage.com/building-approvals-dubai-dubai-municipality-services-list-1778068785631.jpg",
     coverImage: "https://tey8h8kr4bvj5bie.public.blob.vercel-storage.com/building-approvals-dubai-dubai-municipality-services-cover-1778068785631.jpg",
-    metaTitle: "dubai-municipality-services-complete-guide-for-residents",
-    metaDescription: "Learn about Dubai Municipality services, DM approval process, rules, fees, BPS Dubai, branches, and fitout approval steps for property projects.",
+    metaTitle: "Dubai Municipality Approvals Services: Complete Guide 2026",
+    metaDescription: "Learn about the Dubai Municipality Approvals service, DM approval process, rules, fees, BPS Dubai, branches, and fitout approval steps for property projects.",
     keywords: ["dm dubai", "bps dubai", "dm municipality"],
     ogImage: "https://tey8h8kr4bvj5bie.public.blob.vercel-storage.com/building-approvals-dubai-dubai-municipality-services-cover-1778068785631.jpg",
-    faqs: [
-      { question: 'What is Dubai Municipality?', answer: 'Dubai Municipality is the government authority responsible for many civic, building, planning, public health, environmental, and regulatory services in Dubai. It manages services related to construction, land, food safety, waste control, public facilities, and urban development.' },
-      { question: 'What is DM approval?', answer: 'DM approval is permission from the Dubai Municipality for certain activities, projects, or services. It may be required for construction, renovation, fitout, modification, food-related businesses, and other regulated activities in Dubai.' },
-      { question: 'Is Dubai Municipality approval required for fitout work?', answer: 'Yes, many fit-out projects in Dubai require approval before work starts. This can include office fitout, shop fitout, restaurant fitout, warehouse modification, and other interior changes, depending on the location and project scope.' },
-      { question: 'What is BPS Dubai?', answer: 'BPS Dubai generally refers to the building permit system used for building and construction-related approval workflows. It helps manage submissions, application tracking, documents, and approval processes for relevant projects.' },
-      { question: 'What documents are required for DM approval?', answer: 'Common documents include property details, tenancy contract or Ejari, trade licence, landlord NOC, architectural drawings, MEP drawings, contractor documents, consultant documents, and authority-specific forms. Requirements vary by project type.' },
-      { question: 'How much are Dubai Municipality fees?', answer: 'Dubai Municipality fees depend on the service, project type, size, scope, review requirement, and inspection needs. Check the official service page or portal for the latest applicable fee before submission.' },
-      { question: 'Can I start fitout work before DM approval?', answer: 'No. Starting work before receiving the required approval can lead to penalties, stop-work instructions, rejection, or rework. Always confirm approval requirements before beginning site activity.' },
-      { question: 'Where can I check the Dubai Municipality request status?', answer: "Dubai Municipality's official website provides Track Requests and Verify Documents options for users. These tools help applicants check request status and verify issued documents online." },
-    ],
   },
 
   {
