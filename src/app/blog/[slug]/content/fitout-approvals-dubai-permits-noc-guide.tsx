@@ -79,7 +79,7 @@ export default function BlogContent() {
       </ul>
 
       <blockquote>
-        <p><strong><span className="text-size-xl">Must Read:</span></strong><span className="text-size-xl"> </span><a target="_blank" rel="noopener noreferrer nofollow" href="https://www.buildingapprovals.ae/blog/dm-municipality-salon-approval-dubai"><span className="text-size-xl">DM Municipality Salon Approval in Dubai: Complete 2026 Guide</span></a></p>
+        <p><strong><span>Must Read:</span></strong> <a target="_blank" rel="noopener noreferrer nofollow" href="https://www.buildingapprovals.ae/blog/dm-municipality-salon-approval-dubai"><span>DM Municipality Salon Approval in Dubai: Complete 2026 Guide</span></a></p>
       </blockquote>
 
       <figure className="blog-image-figure">
@@ -150,7 +150,7 @@ export default function BlogContent() {
       </ul>
 
       <blockquote>
-        <p><strong><em><span className="text-size-xl">Keep Learning: </span></em></strong><a target="_blank" rel="noopener noreferrer nofollow" href="https://www.buildingapprovals.ae/blog/villa-modification-approval-dubai"><em><span className="text-size-xl">Villa Modification Approval in Dubai: Complete 2026 Guide</span></em></a></p>
+        <p><strong><em><span>Keep Learning: </span></em></strong><a target="_blank" rel="noopener noreferrer nofollow" href="https://www.buildingapprovals.ae/blog/villa-modification-approval-dubai"><em><span>Villa Modification Approval in Dubai: Complete 2026 Guide</span></em></a></p>
       </blockquote>
 
       <h3>Step 6: Site Inspections &amp; Completion Approval</h3>
