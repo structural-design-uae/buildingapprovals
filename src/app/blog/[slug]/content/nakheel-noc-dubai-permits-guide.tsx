@@ -57,7 +57,7 @@ export default function BlogContent() {
       </figure>
 
       <blockquote>
-        <p><strong><span className="text-size-xl">Keep Learning:</span></strong><span className="text-size-xl"> </span><a target="_blank" rel="noopener noreferrer nofollow" href="https://www.buildingapprovals.ae/blog/how-to-get-dda-authority-approval-in-dubai"><span className="text-size-xl">How to get DDA Approval in Dubai 2026?</span></a></p>
+        <p><strong><span>Keep Learning:</span></strong> <a target="_blank" rel="noopener noreferrer nofollow" href="https://www.buildingapprovals.ae/blog/how-to-get-dda-authority-approval-in-dubai"><span>How to get DDA Approval in Dubai 2026?</span></a></p>
       </blockquote>
 
       <h2>A Practical Step‑by‑Step Guide to Getting a Nakheel NOC</h2>
@@ -114,7 +114,7 @@ export default function BlogContent() {
       <p>This stage typically takes several business days.</p>
 
       <blockquote>
-        <p><strong><em><span className="text-size-xl">Keep Learning:</span></em></strong><em><span className="text-size-xl"> </span></em><a target="_blank" rel="noopener noreferrer nofollow" href="https://www.buildingapprovals.ae/blog/how-to-get-dewa-approvals-in-dubai-2026"><em><span className="text-size-xl">How to get DEWA Approvals in Dubai 2026?</span></em></a></p>
+        <p><strong><em><span>Keep Learning:</span></em></strong><em><span> </span></em><a target="_blank" rel="noopener noreferrer nofollow" href="https://www.buildingapprovals.ae/blog/how-to-get-dewa-approvals-in-dubai-2026"><em><span>How to get DEWA Approvals in Dubai 2026?</span></em></a></p>
       </blockquote>
 
       <h3><strong>Step 5 — Receive and Use Your NOC</strong></h3>
