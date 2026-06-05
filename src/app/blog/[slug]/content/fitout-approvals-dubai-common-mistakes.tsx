@@ -32,10 +32,10 @@ export default function BlogContent() {
       <p>Working hours, noise restrictions, approved materials, core drilling limitations, and mechanical and electrical capacities.</p>
 
       <blockquote>
-        <p><strong><span className="text-size-xl">Keep Learning:</span></strong><span className="text-size-xl"> </span><a target="_blank" rel="noopener noreferrer nofollow" href="https://www.buildingapprovals.ae/blog/how-to-get-fitout-approvals-in-dubai"><span className="text-size-xl">How to get Fitout Approvals in Dubai: Step-by-Step Process</span></a></p>
+        <p><strong><span>Keep Learning:</span></strong> <a target="_blank" rel="noopener noreferrer nofollow" href="https://www.buildingapprovals.ae/blog/how-to-get-fitout-approvals-in-dubai"><span>How to get Fitout Approvals in Dubai: Step-by-Step Process</span></a></p>
       </blockquote>
 
-      <h3><strong>Why does this cause delays? </strong></h3>
+      <h3><strong>Why does this cause delays?</strong></h3>
 
       <p>If the submitted design violates building rules, it will be rejected regardless of compliance with other authorities. Designers then need to revise layouts, services, or finishes, leading to lost time.</p>
 
@@ -61,7 +61,7 @@ export default function BlogContent() {
 
       <p>Incorrect fire exit widths, missing emergency lighting, Non-compliant partition materials, Improper fire alarm zoning.</p>
 
-      <p><strong>Why is this serious? </strong></p>
+      <p><strong>Why is this serious?</strong></p>
 
       <p>Civil Defence reviews are strict, and any deviation from approved fire codes leads to rejection. Fixing fire-related issues often requires layout changes, which affect other approvals as well.</p>
 
@@ -85,7 +85,7 @@ export default function BlogContent() {
 
       <p>Building management NOC Developer, NOC Chilled water or utility NOCs, and Structural alteration approvals.</p>
 
-      <h3><strong>Why do delays happen? </strong></h3>
+      <h3><strong>Why do delays happen?</strong></h3>
 
       <p>Applicants assume NOCs are quick, but some take weeks, depending on the building and scope of work.</p>
 
@@ -142,7 +142,7 @@ export default function BlogContent() {
       <p><strong>Advantage of expert support: </strong>A specialist understands authority expectations, submission sequencing, and common pitfalls, significantly reducing approval delays.</p>
 
       <blockquote>
-        <p><strong><span className="text-size-xl">Keep Learning:</span></strong><span className="text-size-xl"> </span><a target="_blank" rel="noopener noreferrer nofollow" href="https://www.buildingapprovals.ae/blog/villa-modification-approval-dubai"><span className="text-size-xl">Villa Modification Approval in Dubai: Complete 2026 Guide</span></a></p>
+        <p><strong><span>Keep Learning:</span></strong> <a target="_blank" rel="noopener noreferrer nofollow" href="https://www.buildingapprovals.ae/blog/villa-modification-approval-dubai"><span>Villa Modification Approval in Dubai: Complete 2026 Guide</span></a></p>
       </blockquote>
 
       <h2>Practical Example from Dubai</h2>
@@ -151,15 +151,15 @@ export default function BlogContent() {
 
       <h2>FAQs (Frequently Asked Questions)</h2>
 
-      <h3><strong>1. How long does office fit-out approval take in Dubai? </strong></h3>
+      <h3><strong>1. How long does office fit-out approval take in Dubai?</strong></h3>
 
       <p><a target="_blank" rel="noopener noreferrer nofollow" href="https://www.buildingapprovals.ae/services">Approval</a> timelines vary, but typically range from 2 to 6 weeks depending on authority requirements, building management processes, and submission quality.</p>
 
-      <h3><strong>2. Is fit-out approval mandatory for small office renovations? </strong></h3>
+      <h3><strong>2. Is fit-out approval mandatory for small office renovations?</strong></h3>
 
       <p>Yes. Even minor changes, such as partition alterations or MEP modifications, usually require <a target="_blank" rel="noopener noreferrer nofollow" href="https://www.buildingapprovals.ae/services">fit-out approval</a> and building approvals in Dubai.</p>
 
-      <h3><strong>3. Which authorities are involved in fit-out approval? </strong></h3>
+      <h3><strong>3. Which authorities are involved in fit-out approval?</strong></h3>
 
       <p>Depending on location, <a target="_blank" rel="noopener noreferrer nofollow" href="https://www.buildingapprovals.ae/services">approvals</a> may involve building management, developers, <a target="_blank" rel="noopener noreferrer nofollow" href="https://www.dcd.gov.ae/portal/">Civil Defence</a>, <a target="_blank" rel="noopener noreferrer nofollow" href="https://www.dm.gov.ae/#">municipality</a> departments, and free zone authorities.</p>
 
@@ -167,7 +167,7 @@ export default function BlogContent() {
 
       <p>No. Starting work without approval can lead to penalties, work stoppage, and reapplication requirements.</p>
 
-      <h3><strong>5. What documents are usually required for fit-out approval? </strong></h3>
+      <h3><strong>5. What documents are usually required for fit-out approval?</strong></h3>
 
       <p>Typical requirements include architectural drawings, MEP layouts, fire safety plans, material specifications, and NOCs.</p>
 
