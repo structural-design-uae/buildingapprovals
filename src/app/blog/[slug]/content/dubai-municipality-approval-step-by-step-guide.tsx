@@ -50,7 +50,7 @@ export default function BlogContent() {
       </figure>
 
       <blockquote>
-        <p><strong><span className="text-size-xl">Keep Learning:</span></strong><span className="text-size-xl"> </span><a target="_blank" rel="noopener noreferrer nofollow" href="https://www.buildingapprovals.ae/blog/dm-dubai-municipality-approval-2026-complete-guide"><span className="text-size-xl">DM Dubai Municipality Approval 2026 – Complete Guide</span></a></p>
+        <p><strong><span>Keep Learning:</span></strong> <a target="_blank" rel="noopener noreferrer nofollow" href="https://www.buildingapprovals.ae/blog/dm-dubai-municipality-approval-2026-complete-guide"><span>DM Dubai Municipality Approval 2026 – Complete Guide</span></a></p>
       </blockquote>
 
       <h2>Step 4: Address Modifications and Clarifications</h2>
@@ -90,8 +90,8 @@ export default function BlogContent() {
         <table>
         <thead>
         <tr>
-          <th><span className="text-color-white">Project Type</span></th>
-          <th><span className="text-color-white">Timeline (Approx.)</span></th>
+          <th>Project Type</th>
+          <th>Timeline (Approx.)</th>
         </tr>
         </thead>
         <tbody>
@@ -110,7 +110,7 @@ export default function BlogContent() {
       <p><em>Timelines vary based on project complexity, size, and required permits.</em></p>
 
       <blockquote>
-        <p><strong><em><span className="text-size-xl">Keep Learning: </span></em></strong><a target="_blank" rel="noopener noreferrer nofollow" href="https://www.buildingapprovals.ae/blog/villa-modification-approval-dubai"><span className="text-size-xl">Villa Modification Approval in Dubai: Complete 2026 Guide</span></a></p>
+        <p><strong><em><span>Keep Learning: </span></em></strong><a target="_blank" rel="noopener noreferrer nofollow" href="https://www.buildingapprovals.ae/blog/villa-modification-approval-dubai"><span>Villa Modification Approval in Dubai: Complete 2026 Guide</span></a></p>
       </blockquote>
 
       <h2>Why Professional Support Speeds Up Dubai Building Approvals</h2>
