@@ -155,6 +155,7 @@ for (const [alias, serviceId] of Object.entries({
   'jafza-noc-dubai': 'jafza',
   'dha-approvals-dubai': 'dha',
   'dso-approvals-dubai': 'dso',
+  'dda-approvals-dubai': 'dda',
   'dubai-development-authority-approvals': 'dda',
   'signage-approvals-dubai': 'signage',
   'spa-approvals-dubai': 'spa',

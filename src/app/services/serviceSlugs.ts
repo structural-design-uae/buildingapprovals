@@ -3,7 +3,7 @@ export const SITE_URL = 'https://buildingapprovals.ae';
 export const serviceCanonicalPaths: Record<string, string> = {
   'dubai-municipality': '/services/dubai-municipality-approvals',
   'civil-defense': '/services/civil-defence-approvals-dubai',
-  dda: '/services/dubai-development-authority-approvals',
+  dda: '/services/dda-approvals-dubai',
   dha: '/services/dha-approvals-dubai',
   dewa: '/services/dewa-approvals-dubai',
   dso: '/services/dso-approvals-dubai',
@@ -28,6 +28,7 @@ export const serviceCanonicalPaths: Record<string, string> = {
 export const serviceSlugAliases: Record<string, string> = {
   'dubai-municipality-approvals': 'dubai-municipality',
   'civil-defence-approvals-dubai': 'civil-defense',
+  'dda-approvals-dubai': 'dda',
   'dubai-development-authority-approvals': 'dda',
   'dha-approvals-dubai': 'dha',
   'dewa-approvals-dubai': 'dewa',
